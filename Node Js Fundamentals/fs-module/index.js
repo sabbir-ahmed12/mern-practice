@@ -3,14 +3,15 @@ var http = require("http");
 
 var server = http.createServer((req, res) => {
   if ((req.url = "/")) {
-    // Sync
+    // Async
 
-    let result = fs.existsSync("home.html");
-    if (result) {
-      res.end("True");
-    } else {
-      res.end("False");
-    }
+    fs.exists("home.html", (result) => {
+      if (result) {
+        res.end("True");
+      } else {
+        res.end("False");
+      }
+    });
   }
 });
 
