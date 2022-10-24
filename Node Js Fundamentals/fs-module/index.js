@@ -5,15 +5,11 @@ var server = http.createServer((req, res) => {
   if ((req.url = "/")) {
     // Sync
 
-    let error = fs.unlinkSync("demoSyncNew.txt");
-    if (error) {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write("File unlink failed.");
-      res.end();
+    let result = fs.existsSync("home.html");
+    if (result) {
+      res.end("True");
     } else {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write("File unlink successful.");
-      res.end();
+      res.end("False");
     }
   }
 });
