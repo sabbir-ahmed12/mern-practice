@@ -3,19 +3,18 @@ var http = require("http");
 
 var server = http.createServer((req, res) => {
   if ((req.url = "/")) {
-    // Async
+    // Sync
 
-    fs.unlink("demoNew.txt", (error) => {
-      if (error) {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.write("File unlink failed.");
-        res.end();
-      } else {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.write("File unlink successful.");
-        res.end();
-      }
-    });
+    let error = fs.unlinkSync("demoSyncNew.txt");
+    if (error) {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write("File unlink failed.");
+      res.end();
+    } else {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write("File unlink successful.");
+      res.end();
+    }
   }
 });
 
