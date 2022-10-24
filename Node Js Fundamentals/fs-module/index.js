@@ -4,17 +4,16 @@ var http = require("http");
 var server = http.createServer((req, res) => {
   if ((req.url = "/")) {
     // Async
-    fs.rename("demo.txt", "demoNew.txt", (error) => {
-      if (error) {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.write("File rename failed.");
-        res.end();
-      } else {
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.write("File rename successful.");
-        res.end();
-      }
-    });
+    let error = fs.renameSync("demoSync.txt", "demoSyncNew.txt");
+    if (error) {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write("File rename failed.");
+      res.end();
+    } else {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write("File rename successful.");
+      res.end();
+    }
   }
 });
 
