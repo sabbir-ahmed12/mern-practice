@@ -48,6 +48,12 @@ app.get("/cookies", (req, res) => {
   res.end("Cookies set successfully.");
 });
 
+// Clear cookies
+app.get("/clear", (req, res) => {
+  res.clearCookie("name");
+  res.end("Cookies cleared successfully");
+});
+
 app.listen(8000, () => {
   {
     console.log("Server run successful.");
