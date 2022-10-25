@@ -24,7 +24,7 @@ app.get("/about", (req, res) => {
 // Download response
 app.get("/download", (req, res) => {
   {
-    res.download("./uploads/dallas-letter.pdf");
+    res.download("./uploads/soulful-ringtone.mp3");
   }
 });
 
