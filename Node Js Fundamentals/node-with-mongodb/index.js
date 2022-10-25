@@ -14,7 +14,8 @@ mongoClient.connect(url, (error, myMongoClient) => {
     // findAllItem(myMongoClient);
     // findAllItemByProjection(myMongoClient);
     // findAllItemByQuery(myMongoClient);
-    findAllItemByLimit(myMongoClient);
+    // findAllItemByLimit(myMongoClient);
+    findAllItemSorted(myMongoClient);
   }
 });
 
@@ -125,3 +126,17 @@ mongoClient.connect(url, (error, myMongoClient) => {
 //       console.log(result);
 //     });
 // }
+
+// Find sorted data
+function findAllItemSorted(myMongoClient) {
+  let myDatabase = myMongoClient.db("school");
+  let myCollection = myDatabase.collection("students");
+  let sortPattern = { roll: -1 };
+
+  myCollection
+    .find()
+    .sort(sortPattern)
+    .toArray((error, result) => {
+      console.log(result);
+    });
+}
