@@ -11,7 +11,8 @@ mongoClient.connect(url, (error, myMongoClient) => {
     // insertData(myMongoClient);
     // deleteAll(myMongoClient);
     // findOneItem(myMongoClient);
-    findAllItem(myMongoClient);
+    // findAllItem(myMongoClient);
+    findAllItemByProjection(myMongoClient);
   }
 });
 
@@ -76,11 +77,24 @@ mongoClient.connect(url, (error, myMongoClient) => {
 // }
 
 // Function to find all data from collection
-function findAllItem(myMongoClient) {
+// function findAllItem(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   let myCollection = myDatabase.collection("students");
+
+//   myCollection.find().toArray((error, result) => {
+//     console.log(result);
+//   });
+// }
+
+// Find all data based on a particular key
+function findAllItemByProjection(myMongoClient) {
   let myDatabase = myMongoClient.db("school");
   let myCollection = myDatabase.collection("students");
 
-  myCollection.find().toArray((error, result) => {
+  let findItem = {};
+  let itemProjection = { projection: { name: true, roll: true } };
+
+  myCollection.find(findItem, itemProjection).toArray((error, result) => {
     console.log(result);
   });
 }
