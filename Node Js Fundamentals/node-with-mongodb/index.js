@@ -16,7 +16,8 @@ mongoClient.connect(url, (error, myMongoClient) => {
     // findAllItemByQuery(myMongoClient);
     // findAllItemByLimit(myMongoClient);
     // findAllItemSorted(myMongoClient);
-    updateData(myMongoClient);
+    // updateData(myMongoClient);
+    createNewCollection(myMongoClient);
   }
 });
 
@@ -143,14 +144,22 @@ mongoClient.connect(url, (error, myMongoClient) => {
 // }
 
 // Update data
-function updateData(myMongoClient) {
+// function updateData(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   let myCollection = myDatabase.collection("students");
+
+//   let queryValue = { roll: "12" };
+//   let newValue = { $set: { name: "Sabbir Ahmed" } };
+
+//   myCollection.updateOne(queryValue, newValue, (error, result) => {
+//     console.log(result);
+//   });
+// }
+
+// Create new collection
+function createNewCollection(myMongoClient) {
   let myDatabase = myMongoClient.db("school");
-  let myCollection = myDatabase.collection("students");
-
-  let queryValue = { roll: "12" };
-  let newValue = { $set: { name: "Sabbir Ahmed" } };
-
-  myCollection.updateOne(queryValue, newValue, (error, result) => {
+  myDatabase.createCollection("teachers", (error, result) => {
     console.log(result);
   });
 }
