@@ -21,9 +21,10 @@ app.get("/about", (req, res) => {
   }
 });
 
-app.get("/contact", (req, res) => {
+// Download response
+app.get("/download", (req, res) => {
   {
-    res.send("Contact Page");
+    res.download("./uploads/dallas-letter.pdf");
   }
 });
 
