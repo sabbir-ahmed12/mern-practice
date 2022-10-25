@@ -15,7 +15,8 @@ mongoClient.connect(url, (error, myMongoClient) => {
     // findAllItemByProjection(myMongoClient);
     // findAllItemByQuery(myMongoClient);
     // findAllItemByLimit(myMongoClient);
-    findAllItemSorted(myMongoClient);
+    // findAllItemSorted(myMongoClient);
+    updateData(myMongoClient);
   }
 });
 
@@ -128,15 +129,28 @@ mongoClient.connect(url, (error, myMongoClient) => {
 // }
 
 // Find sorted data
-function findAllItemSorted(myMongoClient) {
+// function findAllItemSorted(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   let myCollection = myDatabase.collection("students");
+//   let sortPattern = { roll: -1 };
+
+//   myCollection
+//     .find()
+//     .sort(sortPattern)
+//     .toArray((error, result) => {
+//       console.log(result);
+//     });
+// }
+
+// Update data
+function updateData(myMongoClient) {
   let myDatabase = myMongoClient.db("school");
   let myCollection = myDatabase.collection("students");
-  let sortPattern = { roll: -1 };
 
-  myCollection
-    .find()
-    .sort(sortPattern)
-    .toArray((error, result) => {
-      console.log(result);
-    });
+  let queryValue = { roll: "12" };
+  let newValue = { $set: { name: "Sabbir Ahmed" } };
+
+  myCollection.updateOne(queryValue, newValue, (error, result) => {
+    console.log(result);
+  });
 }
