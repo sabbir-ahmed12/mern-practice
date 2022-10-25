@@ -17,7 +17,8 @@ mongoClient.connect(url, (error, myMongoClient) => {
     // findAllItemByLimit(myMongoClient);
     // findAllItemSorted(myMongoClient);
     // updateData(myMongoClient);
-    createNewCollection(myMongoClient);
+    // createNewCollection(myMongoClient);
+    dropSingleCollection(myMongoClient);
   }
 });
 
@@ -157,9 +158,18 @@ mongoClient.connect(url, (error, myMongoClient) => {
 // }
 
 // Create new collection
-function createNewCollection(myMongoClient) {
+// function createNewCollection(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   myDatabase.createCollection("teachers", (error, result) => {
+//     console.log(result);
+//   });
+// }
+
+// Delete collection from database
+function dropSingleCollection(myMongoClient) {
   let myDatabase = myMongoClient.db("school");
-  myDatabase.createCollection("teachers", (error, result) => {
+
+  myDatabase.dropCollection("teachers", (error, result) => {
     console.log(result);
   });
 }
