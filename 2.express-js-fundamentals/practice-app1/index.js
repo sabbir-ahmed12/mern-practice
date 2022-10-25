@@ -28,6 +28,14 @@ app.get("/download", (req, res) => {
   }
 });
 
+app.get("/country", (req, res) => {
+  res.redirect("http://localhost:8000/bd");
+});
+
+app.get("/bd", (req, res) => {
+  res.send("This is BD");
+});
+
 app.listen(8000, () => {
   {
     console.log("Server run successful.");
