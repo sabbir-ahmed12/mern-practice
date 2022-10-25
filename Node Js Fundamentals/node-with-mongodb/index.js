@@ -12,7 +12,9 @@ mongoClient.connect(url, (error, myMongoClient) => {
     // deleteAll(myMongoClient);
     // findOneItem(myMongoClient);
     // findAllItem(myMongoClient);
-    findAllItemByProjection(myMongoClient);
+    // findAllItemByProjection(myMongoClient);
+    // findAllItemByQuery(myMongoClient);
+    findAllItemByLimit(myMongoClient);
   }
 });
 
@@ -87,14 +89,39 @@ mongoClient.connect(url, (error, myMongoClient) => {
 // }
 
 // Find all data based on a particular key
-function findAllItemByProjection(myMongoClient) {
-  let myDatabase = myMongoClient.db("school");
-  let myCollection = myDatabase.collection("students");
+// function findAllItemByProjection(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   let myCollection = myDatabase.collection("students");
 
-  let findItem = {};
-  let itemProjection = { projection: { name: true, roll: true } };
+//   let findItem = {};
+//   let itemProjection = { projection: { name: true, roll: true } };
 
-  myCollection.find(findItem, itemProjection).toArray((error, result) => {
-    console.log(result);
-  });
-}
+//   myCollection.find(findItem, itemProjection).toArray((error, result) => {
+//     console.log(result);
+//   });
+// }
+
+// Find all data by query
+// function findAllItemByQuery(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   let myCollection = myDatabase.collection("students");
+
+//   let queryValue = { city: "Cumilla" };
+
+//   myCollection.find(queryValue).toArray((error, result) => {
+//     console.log(result);
+//   });
+// }
+
+// Find data by limit
+// function findAllItemByLimit(myMongoClient) {
+//   let myDatabase = myMongoClient.db("school");
+//   let myCollection = myDatabase.collection("students");
+
+//   myCollection
+//     .find()
+//     .limit(2)
+//     .toArray((error, result) => {
+//       console.log(result);
+//     });
+// }
