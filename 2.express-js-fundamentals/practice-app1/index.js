@@ -42,6 +42,12 @@ app.get("/header", (req, res) => {
   res.send("Hi there!");
 });
 
+// Set cookies
+app.get("/cookies", (req, res) => {
+  res.cookie("name", "Sabbir");
+  res.end("Cookies set successfully.");
+});
+
 app.listen(8000, () => {
   {
     console.log("Server run successful.");
