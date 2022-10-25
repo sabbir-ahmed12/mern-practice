@@ -36,6 +36,12 @@ app.get("/bd", (req, res) => {
   res.send("This is BD");
 });
 
+// Adding information in response header
+app.get("/header", (req, res) => {
+  res.append("name", "Sabbir");
+  res.send("Hi there!");
+});
+
 app.listen(8000, () => {
   {
     console.log("Server run successful.");
