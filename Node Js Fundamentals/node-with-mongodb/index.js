@@ -8,20 +8,21 @@ mongoClient.connect(url, (error, myMongoClient) => {
     console.log("Connection failed.");
   } else {
     console.log("Connection successful.");
-    InsertData(myMongoClient);
+    deleteData(myMongoClient);
   }
 });
 
-function InsertData(myMongoClient) {
+function deleteData(myMongoClient) {
   let myDatabase = myMongoClient.db("school");
   let myCollection = myDatabase.collection("students");
 
-  let data = { name: "Sabbir", roll: "12", dept: "ETE", city: "Cumilla" };
-  myCollection.insertOne(data, (error) => {
+  let deleteItem = { roll: "12" };
+
+  myCollection.deleteOne(deleteItem, (error) => {
     if (error) {
-      console.log("Data insert failed.");
+      console.log("Data deletion failed.");
     } else {
-      console.log("Data insert successful.");
+      console.log("Data deletion successful.");
     }
   });
 }
