@@ -3,10 +3,10 @@ const express = require("express");
 const app = express();
 
 // Application level middleware
-app.use((req, res, next) => {
-  console.log("Application middleware executed.");
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("Application middleware executed.");
+//   next();
+// });
 
 app.get("/", (req, res) => {
   res.send("This is home page");
@@ -16,6 +16,11 @@ app.get("/contact", (req, res) => {
   res.send("This is contact page.");
 });
 
+// Route level middleware
+app.use("/about", (req, res, next) => {
+  console.log("About route middleware.");
+  next();
+});
 app.get("/about", (req, res) => {
   res.send("This is about page.");
 });
