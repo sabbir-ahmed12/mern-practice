@@ -1,6 +1,8 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 app = express();
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.end("This is a simple GET request.");
@@ -42,6 +44,13 @@ app.post("/fifth", (req, res) => {
   let userName = req.header("username");
   let password = req.header("password");
   res.send(`Username: ${userName} Password: ${password}`);
+});
+
+// Extracting JSON data from body of POST request
+app.post("/sixth", (req, res) => {
+  let jsonData = req.body;
+  let name = jsonData["name"];
+  res.send(JSON.stringify(jsonData));
 });
 
 app.listen(8000, () => {
