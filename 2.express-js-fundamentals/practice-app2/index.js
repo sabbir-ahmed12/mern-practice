@@ -15,6 +15,19 @@ app.get("/first", (req, res) => {
   res.end(firstName + " " + lastName);
 });
 
+// Working with request header
+// Provide the values in Postman
+app.get("/second", (req, res) => {
+  let firstName = req.header("firstName");
+  let lastName = req.header("lastName");
+  res.end(firstName + " " + lastName);
+});
+
+// Working with post request
+app.post("/third", (req, res) => {
+  res.send("This is simple post request.");
+});
+
 app.listen(8000, () => {
   console.log("Server run successful.");
 });
