@@ -1,8 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+let multer = require("multer");
+
+let multerObj = multer();
 
 app = express();
 app.use(bodyParser.json());
+app.use(multerObj.array());
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.end("This is a simple GET request.");
@@ -50,6 +55,12 @@ app.post("/fifth", (req, res) => {
 app.post("/sixth", (req, res) => {
   let jsonData = req.body;
   let name = jsonData["name"];
+  res.send(JSON.stringify(jsonData));
+});
+
+// Extracting information from multipart from data
+app.post("/seventh", (req, res) => {
+  let jsonData = req.body;
   res.send(JSON.stringify(jsonData));
 });
 
