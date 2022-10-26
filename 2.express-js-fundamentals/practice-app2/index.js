@@ -28,6 +28,22 @@ app.post("/third", (req, res) => {
   res.send("This is simple post request.");
 });
 
+// Working with POST request URL query
+// localhost:8000/fourth?firstName=Sabbir&lastName=Ahmed
+app.post("/fourth", (req, res) => {
+  let firstName = req.query.firstName;
+  let lastName = req.query.lastName;
+
+  res.send(firstName + " " + lastName);
+});
+
+// Working with header
+app.post("/fifth", (req, res) => {
+  let userName = req.header("username");
+  let password = req.header("password");
+  res.send(`Username: ${userName} Password: ${password}`);
+});
+
 app.listen(8000, () => {
   console.log("Server run successful.");
 });
