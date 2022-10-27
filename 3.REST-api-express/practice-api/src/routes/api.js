@@ -4,3 +4,5 @@ const router = express.Router();
 
 // Route
 router.get("/hello", HelloController.Hello);
+
+module.exports = router;
